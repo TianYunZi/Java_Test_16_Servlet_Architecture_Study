@@ -10,6 +10,7 @@
     <version>1.0-SNAPSHOT</version>
     <modules>
         <module>1.1.1.chapter1-start</module>
+        <module>2.1.1.chapter2-function</module>
     </modules>
 
 
