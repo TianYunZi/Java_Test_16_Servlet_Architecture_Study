@@ -1,5 +1,6 @@
 package org.practise.chapter2.service;
 
+import org.practise.chapter2.dao.DatabaseHelper;
 import org.practise.chapter2.model.Customer;
 
 import java.util.List;
@@ -13,8 +14,8 @@ public class CustomerService {
      * @return
      */
     public List<Customer> getCustomerList() {
-        // TODO: 2017/8/27
-        return null;
+        String sql = "select * from tb_customer";
+        return DatabaseHelper.queryEntityList(Customer.class, sql);
     }
 
     /**
@@ -23,31 +24,27 @@ public class CustomerService {
      * @return
      */
     public Customer getCustomer(long id) {
-        // TODO: 2017/8/27
-        return null;
+        return DatabaseHelper.queryEntity(Customer.class, "select * from tb_customer where id = ?", id);
     }
 
     /**
      * 创建客户
      */
     public boolean createCustomer(Map<String, Object> fieldMap) {
-        // TODO: 2017/8/27
-        return false;
+        return DatabaseHelper.insertEntity(Customer.class, fieldMap);
     }
 
     /**
      * 更新客户
      */
     public boolean updateCustomer(long id, Map<String, Object> fieldMap) {
-        // TODO: 2017/8/27
-        return false;
+        return DatabaseHelper.updateEntity(Customer.class, id, fieldMap);
     }
 
     /**
      * 删除客户
      */
     public boolean deleteCustomer(long id) {
-        // TODO: 2017/8/27
-        return false;
+        return DatabaseHelper.deleteEntity(Customer.class, id);
     }
 }
