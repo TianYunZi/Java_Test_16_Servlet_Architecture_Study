@@ -70,22 +70,6 @@ public class DatabaseHelper {
     }
 
     /**
-     * 关闭数据库连接.
-     *
-     * @return
-     */
-    public static void closeConnection() {
-        Connection connection = CONNECTION_HOLDER.get();
-        if (connection != null) {
-            try {
-                connection.close();
-            } catch (SQLException e) {
-                LOGGER.error("failure close connection.", e);
-            }
-        }
-    }
-
-    /**
      * 执行查询语句.
      *
      * @param sql
@@ -100,8 +84,6 @@ public class DatabaseHelper {
         } catch (SQLException e) {
             LOGGER.error("execute query failure.", e);
             throw new RuntimeException(e);
-        } finally {
-            closeConnection();
         }
         return result;
     }
@@ -121,8 +103,6 @@ public class DatabaseHelper {
         } catch (SQLException e) {
             LOGGER.error("execute update failure", e);
             throw new RuntimeException(e);
-        } finally {
-            closeConnection();
         }
         return rows;
     }
@@ -144,8 +124,6 @@ public class DatabaseHelper {
         } catch (SQLException e) {
             LOGGER.error("execute query list failure.", e);
             throw new RuntimeException(e);
-        } finally {
-            closeConnection();
         }
         return entityList;
     }
@@ -167,8 +145,6 @@ public class DatabaseHelper {
         } catch (SQLException e) {
             LOGGER.error("execute query entity failure.", e);
             throw new RuntimeException(e);
-        } finally {
-            closeConnection();
         }
         return entity;
     }
@@ -196,7 +172,7 @@ public class DatabaseHelper {
             values.append("?, ");
         }
         columns.replace(columns.lastIndexOf(", "), columns.length(), ")");
-        values.replace(columns.lastIndexOf(", "), columns.length(), ")");
+        values.replace(values.lastIndexOf(", "), values.length(), ")");
         builder.append(columns).append(" VALUES ").append(values);
         Object[] params = fieldMap.values().toArray();
         return executeUpdate(builder.toString(), params) == 1;
@@ -231,7 +207,7 @@ public class DatabaseHelper {
         paramList.addAll(fieldMap.values());
         paramList.add(id);
         Object[] params = paramList.toArray();
-        return executeUpdate(builder.toString(), paramList) == 1;
+        return executeUpdate(builder.toString(), params) == 1;
     }
 
     /**
