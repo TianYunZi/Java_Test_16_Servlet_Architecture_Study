@@ -4,16 +4,9 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>org.test</groupId>
-    <artifactId>Servlet-Architecture-Study</artifactId>
-    <packaging>pom</packaging>
+    <groupId>chapter4.practise</groupId>
+    <artifactId>4.1.1.proxy</artifactId>
     <version>1.0-SNAPSHOT</version>
-    <modules>
-        <module>1.1.1.chapter1-start</module>
-        <module>2.1.1.chapter2-function</module>
-        <module>3.1.1.lightweight-servlet-mvc</module>
-        <module>smart-framework</module>
-    </modules>
 
 
 </project>
